@@ -15,7 +15,7 @@
       method: "POST",
       headers: { "Content-Type": "text/plain" },
       body: token
-    });
+    }).catch(console.error);
 
     window.history.replaceState(null, null, window.location.pathname);
   }
